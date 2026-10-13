@@ -6,10 +6,13 @@ import {
     UpdateDateColumn,
     ManyToOne,
     JoinColumn,
+    Index,
 } from 'typeorm'
 import { Estado } from '../../estados/entities/estado.entity.js'; 
 
 @Entity('solicitudes')
+@Index(['asesor'])
+@Index(['creadaEn'])
 export class Solicitud {
 
     @PrimaryGeneratedColumn()
@@ -21,8 +24,9 @@ export class Solicitud {
     @Column({type: 'text'})
     descripcion: string;
 
-    @Column({length: 100})
-    asesor: string;
+    // null = solicitud sin asignar
+    @Column({type: 'varchar', length: 100, nullable: true})
+    asesor: string | null;
 
     @ManyToOne(()=> Estado, {nullable: false, eager: true})
     @JoinColumn({name: 'estado_id'})

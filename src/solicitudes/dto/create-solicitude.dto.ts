@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
+import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 
 export class CreateSolicitudDto {
     @IsString()
@@ -9,10 +9,4 @@ export class CreateSolicitudDto {
     @IsString()
     @IsNotEmpty()
     descripcion: string;
-
-    @IsOptional()
-    @IsString()
-    @IsNotEmpty()
-    @MaxLength(100)
-    asesor?: string;
 }
